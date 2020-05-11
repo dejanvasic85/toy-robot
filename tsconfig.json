@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2019",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "listEmittedFiles": false,
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "baseUrl": "./",
+  },
+  "exclude": [
+    "node_modules/**/*",
+  ]
+}
