@@ -12,7 +12,7 @@ describe("Robot", () => {
     ];
 
     describe("When trying to position outside of the board in any direction", () => {
-      it.each(cases)("should remain default 0,0 position", ({x, y, direction}: { x: number, y: number, direction: Direction}) => {
+      it.each(cases)("should remain in default 0,0 position", ({x, y, direction}: { x: number, y: number, direction: Direction}) => {
         robot = new Robot();
         robot.place(x, y, direction);
         
@@ -22,7 +22,7 @@ describe("Robot", () => {
   });
 
   describe('left', () => {
-    it('should rotate all the way around', () => {
+    it('should rotate all the way around after 4 calls', () => {
       robot = new Robot();
       robot.place(0, 0, Direction.NORTH);
       robot.left(); // West
@@ -34,25 +34,25 @@ describe("Robot", () => {
   });
 
   describe('right', () => {
-    it('should rotate all the way around', () => {
+    it('should rotate all the way around after 4 calls', () => {
       robot = new Robot();
       robot.place(0, 0, Direction.NORTH);
-      robot.right(); // West
-      robot.right(); // South
       robot.right(); // East
+      robot.right(); // South
+      robot.right(); // West
       robot.right(); // back to north
       expect(robot.getCurrentPosition()).toEqual({ x: 0, y: 0, direction: Direction.NORTH });
     });
   });
 
   describe("move", () => {
-    describe("When the robot is on position x:0, y:0 North", () => {
+    describe("When the robot is at position x:0, y:0 f:North", () => {
       beforeEach(() => {
         robot = new Robot();
         robot.place(0, 0, Direction.NORTH);
       });
 
-      describe("and trying to move WEST (left)", () => {
+      describe("and trying to move West (left)", () => {
         it("should stay in the same position", () => {
           robot.left();
           robot.move();
@@ -64,7 +64,7 @@ describe("Robot", () => {
         });
       });
 
-      describe("and trying to move NORTH", () => {
+      describe("and trying to move North", () => {
         it("should move the position y by 1", () => {
           robot.move();
           expect(robot.getCurrentPosition()).toEqual({
@@ -75,7 +75,7 @@ describe("Robot", () => {
         });
       });
 
-      describe("and trying to move EAST", () => {
+      describe("and trying to move East", () => {
         it("should move the position of x by 1", () => {
           robot.right();
           robot.move();
@@ -87,7 +87,7 @@ describe("Robot", () => {
         });
       });
 
-      describe("and trying to move SOUTH", () => {
+      describe("and trying to move South", () => {
         it("should remain in the same position", () => {
           robot.right();
           robot.right();
@@ -121,7 +121,7 @@ describe("Robot", () => {
         });
       });
 
-      describe("and trying to move south", () => {
+      describe("and trying to move South", () => {
         it("should should move the y position by 1", () => {
           robot.move();
 
